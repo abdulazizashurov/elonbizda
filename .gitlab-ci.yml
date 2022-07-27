@@ -1,0 +1,11 @@
+stages:
+  - lint
+
+lint:
+  stage: lint
+  only: 
+    - branches
+  script:
+    - npm install
+    - npm run lint
+

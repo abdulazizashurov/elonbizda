@@ -1,0 +1,57 @@
+/dashboard/poster/{id}:
+  put:
+    security:
+      - Bearer: [ ]
+    tags:
+      - Poster Dashboard
+    summary: Update
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+        description: Post Id
+    requestBody:
+      description: Update post
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components.yml/schemas/UpdatePosterDashboard'
+    responses:
+      200:
+        description: Ok
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - Ok
+                data:
+                  type: object
+                  properties:
+                    todo:
+                      $ref: '#/components.yml/schemas/PosterModel'
+      422:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR

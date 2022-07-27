@@ -1,0 +1,73 @@
+components:
+  schemas:
+    CategoryFormModel:
+      type: 'object'
+      properties:
+        _id:
+          type: 'string'
+          format: uuid
+        name:
+          type: 'string'
+          required: true
+        displayName:
+          type: 'string'
+          required: true
+        description:
+          type: 'string'
+        formType:
+          type: 'string'
+          enum: ['boolean', 'reach-text', 'character', 'Date', 'date-time', 'Image', 'enum', 'numeric', 'url', 'cover-image', 'numberic-array', 'character-array']
+        formElement:
+          type: 'string'
+          enum: ['none', 'auto-complete', 'textarea', 'character', 'chexbox', 'radio', 'select', 'button', 'enum-button']
+        exampleValue:
+          type: 'string'
+        values:
+          type: 'object'
+        value:
+          type: 'string'
+        editable:
+          type: 'boolean'
+        layout:
+          type: 'string'
+        searchable:
+          type: 'boolean'
+        filterable:
+          type: 'boolean'
+        createdAt:
+          type: 'string'
+          format: date
+        updatedAt:
+          type: 'string'
+          format: date
+    CreateCategoryFormModel:
+      type: 'object'
+      properties:
+        name:
+          type: 'string'
+          required: true
+        displayName:
+          type: 'string'
+          required: true
+        description:
+          type: 'string'
+        formType:
+          type: 'string'
+          enum: ['boolean', 'reach-text', 'character', 'Date', 'date-time', 'Image', 'enum', 'numeric', 'url', 'cover-image', 'numberic-array', 'character-array']
+        formElement:
+          type: 'string'
+          enum: ['none', 'auto-complete', 'textarea', 'character', 'chexbox', 'radio', 'select', 'button', 'enum-button']
+        exampleValue:
+          type: 'string'
+        values:
+          type: 'string'
+        value:
+          type: 'string'
+        editable:
+          type: 'boolean'
+        layout:
+          type: 'string'
+        searchable:
+          type: 'boolean'
+        filterable:
+          type: 'boolean'

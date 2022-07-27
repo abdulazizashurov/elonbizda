@@ -1,0 +1,58 @@
+name: "CI for all without specific branches"
+on:
+  push:
+    branches-ignore:    
+      - 'dev'
+      - 'main'
+    paths:
+      - '**.ts'
+  pull_request:
+    branches-ignore:    
+      - 'dev'
+      - 'main'
+jobs:
+  setup:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Nodejs and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Setup yarn
+        run: npm install -g yarn
+
+      - name: Setup Nodejs with yarn caching
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn
+  lint:
+    name: Run linters
+    runs-on: self-hosted
+    needs: setup
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: yarn
+      - run: yarn install
+      - run: yarn lint
+  tests:
+    name: Run unit tests
+    runs-on: self-hosted
+    needs: lint
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: yarn
+      - run: yarn install
+      - run: yarn test

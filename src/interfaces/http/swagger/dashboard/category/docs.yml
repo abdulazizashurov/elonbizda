@@ -1,0 +1,204 @@
+/dashboard/categories:
+  post:
+    security:
+      - Bearer: []
+    tags:
+      - Category Dashboard
+    summary: Create
+    requestBody:
+      description: Create new category
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components.yml/schemas/CreateCategoryModel'
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - Created
+                data:
+                  type: object
+                  properties:
+                    todo:
+                      $ref: '#/components.yml/schemas/CategoryModel'
+      422:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR
+/dashboard/categories/{id}:
+  put:
+    security:
+      - Bearer: []
+    tags:
+      - Category Dashboard
+    summary: Update
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: CategoryID
+    requestBody:
+      description: Update existing category
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components.yml/schemas/UpdateCategoryModel'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                msgCode:
+                  type: string
+                  enum:
+                    - OK
+                message:
+                  type: string
+                  enum:
+                    - OK
+                data:
+                  type: object
+                  properties:
+                    todo:
+                      $ref: '#/components.yml/schemas/CategoryModel'
+      422:
+        description: Validation Error
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      500:
+        description: Bad request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR
+  delete:
+    security:
+      - Bearer: []
+    tags:
+      - Category Dashboard
+    summary: Delete
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+        description: The category ID
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - OK
+                data:
+                  type: object
+                  properties:
+                    todo:
+                      $ref: '#/components.yml/schemas/CategoryModel'
+      404:
+        description: Not found
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: 'string'
+/dashboard/categories/head:
+  post:
+    security:
+      - Bearer: []
+    tags:
+      - Category Dashboard
+    summary: Create
+    requestBody:
+      description: Create  main category
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components.yml/schemas/CreateMainCategoryModel'
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - Create`d
+                data:
+                  type: object
+                  properties:
+                    todo:
+                      $ref: '#/components.yml/schemas/MainCategoryModel'
+      422:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      500:
+        description: Bad request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR

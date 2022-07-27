@@ -1,0 +1,70 @@
+components:
+  schemas:
+    UserModel:
+      type: 'object'
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date
+        updatedAt:
+          type: string
+          format: date
+        email:
+          type: string
+        password:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        gender:
+          type: string
+          enum: ['male', 'female']
+        avatar:
+          type: string
+    CreateUserModel:
+      type: 'object'
+      properties:
+        email:
+          type: 'string'
+          required: true
+        phoneNumber:
+          type: 'string'
+          required: true
+        password:
+          type: 'string'
+          required: true
+        firstName:
+          type: 'string'
+          required: false
+        lastName:
+          type: string
+          required: false
+    RegisterUserModel:
+      type: 'object'
+      properties:
+        firstName:
+          type: 'string'
+        lastName:
+          type: 'string'
+        avatar:
+          type: 'string'
+        email:
+          type: 'string'
+          required: true
+        phoneNumber:
+          type: 'string'
+          required: true
+        password:
+          type: 'string'
+          required: true
+        confirmPassword:
+          type: 'string'
+          required: true
+        gender:
+          type: string
+          enum: ['male', 'female']
+          required: false

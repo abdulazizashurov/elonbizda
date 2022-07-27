@@ -1,0 +1,9 @@
+{
+  "entryFile": "src/interfaces/http/routing.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "spec": {
+    "outputDirectory": "src/interfaces/http/api-docs/",
+    "specVersion": 3
+  },
+  "ignore": ["**/node_modules/**"]
+}

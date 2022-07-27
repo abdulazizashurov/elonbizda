@@ -1,0 +1,14 @@
+components:
+  schemas:
+    apiResponse:
+      type: object
+      properties:
+        msgCode: 
+          type: 'string'
+          description: Message Code of response. 
+        message:
+          type: 'string'
+          description: Message of response. 
+        data:
+          type: 'object'
+          description: Actual data of response

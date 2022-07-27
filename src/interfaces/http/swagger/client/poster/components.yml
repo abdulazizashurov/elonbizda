@@ -1,0 +1,45 @@
+components:
+  schemas:
+    PostModel:
+      type: 'object'
+      properties:
+        _id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        price:
+          type: number
+        isNew:
+          type: boolean
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        agreement:
+          type: boolean
+        additionalInformations:
+          type: [null, object]
+          default: null
+        isActive:
+          type: boolean
+          default: true
+        views:
+          type: number
+          default: 0
+        publishedAt:
+          type: Date
+    CreatePost:
+      type: object
+      properties:
+        title:
+          type: string
+        price:
+          type: number
+        isNew:
+          type: boolean
+        email:
+          type: string
+        phoneNumber:
+          type: string
+

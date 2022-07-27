@@ -1,0 +1,35 @@
+components:
+  schemas:
+    PosterModel:
+      type: 'object'
+      properties:
+        _id:
+          type: 'string'
+          format: uuid
+        title:
+          type: 'string'
+        price:
+          type: 'number'
+        used:
+          type: 'boolean'
+        email:
+          type: 'string'
+        phoneNumber:
+          type: 'string'
+        agreement:
+          type: 'boolean'
+        additionalInformations:
+          type: 'object'
+          default: 'null'
+        isActive:
+          type: 'bolean'
+        views:
+          type: 'number'
+        publishedAt:
+          type: 'Date'
+    UpdatePosterDashboard:
+      type: 'object'
+      properties:
+        title:
+          type: 'string'
+

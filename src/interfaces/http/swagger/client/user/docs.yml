@@ -1,0 +1,113 @@
+/users/verify:
+  post:
+    tags:
+      - User Client
+    summary: Ok
+    requestBody:
+      description: Verify new User
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components.yml/schemas/VerifyUserModel'
+    responses:
+      200:
+        description: Ok
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                msgCode:
+                  type: string
+                  enum:
+                    - OK
+                message:
+                  type: string
+                  enum:
+                    - ok
+                data:
+                  type: object
+                  properties:
+                    user:
+                      $ref: '#/components.yml/schemas/UserModel'
+      422:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR
+/users/register:
+  post:
+    tags:
+      - User Client
+    summary: Ok
+    requestBody:
+      description: Register User
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components.yml/schemas/RegisterUserModel'
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                msgCode:
+                  type: string
+                  enum:
+                    - OK
+                message:
+                  type: string
+                  enum:
+                    - ok
+                data:
+                  type: object
+                  properties:
+                    user:
+                      $ref: '#/components.yml/schemas/UserModel'
+      422:
+        description: Unprocessable Entity
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      409:
+        description: CONFLICT
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ConflictError409'
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR

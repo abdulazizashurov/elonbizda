@@ -1,0 +1,119 @@
+/categories/{id}:
+  get:
+    tags:
+      - Category Client
+    summary: Get
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+        description: Category Id
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - Ok
+                data:
+                  type: object
+                  properties:
+                    todo:
+                      $ref: '#/components.yml/schemas/GetCategoryModel'
+      422:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR
+/categories/{id}/children:
+  get:
+    tags:
+      - Category Client
+    summary: Get
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+        description: Parent Category Id
+    responses:
+      200:
+        description: Ok
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                msgCode:
+                  type: string
+                  enum:
+                    - OK
+                message:
+                  type: string
+                  enum:
+                    - ok
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components.yml/schemas/CategoryModel'
+/categories/head:
+  get:
+    tags:
+      - Category Client
+    summary: Get Main
+    responses:
+      200:
+        description: Get Main
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                msgCode:
+                  type: string
+                  enum:
+                    - OK
+                message:
+                  type: string
+                  enum:
+                    - Ok
+                data:
+                  type: array
+                  items:
+                    $ref: '#components.yml/schemas/GetMainCategoryModel'
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR

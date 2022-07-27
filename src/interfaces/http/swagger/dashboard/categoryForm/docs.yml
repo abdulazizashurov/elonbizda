@@ -1,0 +1,172 @@
+/dashboard/categories/{id}/additional-forms:
+  post:
+    security:
+      - Bearer: [ ]
+    tags:
+      - Category Dashboard
+    summary: Create
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+        description: Category Id
+    requestBody:
+      description: Create new category-form
+      required: true
+      content:
+        application/json:
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/components.yml/schemas/CreateCategoryFormModel'
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - Created
+                data:
+                  type: object
+                  properties:
+                    todo:
+                      $ref: '#/components.yml/schemas/CategoryFormModel'
+      422:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR
+  delete:
+    security:
+      - Bearer: [ ]
+    tags:
+      - Category Dashboard
+    summary: Delete
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+        description: Category Id
+    responses:
+      200:
+        description: Deleted
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                message:
+                  type: String
+                  enum:
+                    - Ok
+                data:
+                  $ref: '#/components.yml/schemas/CategoryFormModel'
+      404:
+        description: Not found
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                msgCode:
+                  type: string
+                  enum:
+                    - NOT_FOUND
+                message:
+                  type: string
+                  enum:
+                    - The category {id} not exist
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR
+/dashboard/categories/{id}/additional-forms/element:
+  post:
+    security:
+      - Bearer: [ ]
+    tags:
+      - Category Dashboard
+    summary: Create
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+        description: Category Id
+    requestBody:
+      description: Add category form Element
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components.yml/schemas/CreateCategoryFormModel'
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/apiResponse'
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - Created
+                data:
+                  type: object
+                  properties:
+                    todo:
+                      $ref: '#/components.yml/schemas/CategoryFormModel'
+      422:
+        description: OK
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components.yml/schemas/ValidationError422'
+      500:
+        description: Server Error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - SERVER_ERROR
